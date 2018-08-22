@@ -22,7 +22,6 @@ end
 
 APPS = [
   "monosnap",
-  "notebook",
   "BetterSnapTool",
   "TogglDesktop",
   "Pocket",
@@ -34,9 +33,6 @@ APPS = [
   "Affinity Photo",
   "pixelmator",
   "xcode",
-  "forklift file manager",
-  "GIF Brewery",
-  "Notebook - Take Notes, Sync across devices"
 ]
 
 APPS.each do |app|

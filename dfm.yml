@@ -140,12 +140,12 @@ tasks:
     deps:
       - brew
 
-  appcleaner:
+  iterm2:
     when:
-      notInstalled: appcleaner
-      # os: "darwin"
+      notInstalled: iterm
+      os: darwin
     cmd:
-      - brew cask install appcleaner
+      - brew cask install iterm2
     deps:
       - brew
 
