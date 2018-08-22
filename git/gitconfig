@@ -27,7 +27,7 @@
 	cam = commit -am
 
 	#forget tracked files
-	forget = rm -r --cached . 
+	forget = rm -r --cached .
 
     yolo = commit --amend --no-edit
 
@@ -43,7 +43,7 @@
 	cached = diff --cached
 	stat = diff --stat
 	fliptable = "!echo '(╯°□°）╯︵ ┻━┻'; git reset --hard HEAD"
-	
+
 	# dealing with others
 
 	# miscellaneous
@@ -64,3 +64,4 @@
 #	gpgsign = true
 [gpg]
 #	program = gpg
+	# program = /usr/local/bin/gpg
