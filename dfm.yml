@@ -58,6 +58,13 @@ tasks:
     deps:
       - zprezto
       - brew-zsh
+      - zplug
+
+  zplug:
+    when:
+      condition: "[ ! -d ~/.zplug ]"
+    cmd:
+      - curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
 
   zprezto:
     when:
