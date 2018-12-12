@@ -62,5 +62,5 @@
 #	token = b967aeaf05841750a6689a58ac91c59f19b629cd
 [commit]
 	gpgsign = true
-[gpg]
-	program = gpg
+#[gpg]
+#	program = /usr/local/bin/gpg

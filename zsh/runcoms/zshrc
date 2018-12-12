@@ -10,7 +10,7 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
-# Customize to your needs...
+[[ -s ~/.zplug/init.zsh ]] && source ~/.zplug/init.zsh
 
 #load shared and private functions
 for function in ~/.dotfiles/zsh/includes/*; do
@@ -32,5 +32,8 @@ fi
 
 LC_ALL=en_CA.UTF-8
 LANG=en_CA.UTF-8
+
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
+
+zplug load 
