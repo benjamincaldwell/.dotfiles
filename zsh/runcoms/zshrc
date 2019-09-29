@@ -36,4 +36,9 @@ LANG=en_CA.UTF-8
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
 
+zplug zsh-users/zsh-autosuggestions
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#424242"
+bindkey '[D' autosuggest-accept
 zplug load 
+
+[[ -s "/Users/b.caldwell/.gvm/scripts/gvm" ]] && source "/Users/b.caldwell/.gvm/scripts/gvm"
