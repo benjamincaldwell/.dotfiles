@@ -40,5 +40,3 @@ zplug zsh-users/zsh-autosuggestions
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#424242"
 bindkey '[D' autosuggest-accept
 zplug load 
-
-[[ -s "/Users/b.caldwell/.gvm/scripts/gvm" ]] && source "/Users/b.caldwell/.gvm/scripts/gvm"

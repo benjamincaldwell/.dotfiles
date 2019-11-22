@@ -26,4 +26,9 @@ alias yolo='git add .; git commit --amend --no-edit'
 function encrypt(){ openssl aes-256-cbc -a -salt -in "${1}" -out "${2}"; }
 function decrypt(){ openssl aes-256-cbc -d -a -in "${1}" -out "${2}"; }
 
-function dotenv() { set -a && [ -f .env ] && source .env && set +a }
+function dotenv() {
+  set -a;
+  [ -f .env ] && source .env;
+  [ -f .env.ejson ] && eval $(ejson2env .env.ejson 2>/dev/null  || sudo ejson2env .env.ejson);
+  set +a;
+}
