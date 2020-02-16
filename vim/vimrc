@@ -29,9 +29,9 @@ set softtabstop=4
 " tabs are made of spaces
 set expandtab
 " Length of a tab
-set tabstop=4
+set tabstop=2
 " Reindent width ( << and >>)
-set shiftwidth=4
+set shiftwidth=2
 set autoindent
 
 set paste

@@ -41,7 +41,7 @@ tasks:
     cmd:
       - "curl -o- https://raw.githubusercontent.com/devctl/devctl/master/install.sh | bash"
     links:
-      - devctl/devctlconfig:.devctlconfig
+      - devctl:.devctl
 
   zsh:
     links:
@@ -53,9 +53,10 @@ tasks:
       - zsh/runcoms/zshrc:.zshrc
       - zsh/prompt/prompt_benjamin_setup:.zprezto/modules/prompt/functions/prompt_benjamin_setup
     cmd:
-      - mkdir ${HOME}/.zsh_includes
+      - "[ ! -d ${HOME}/.zsh_includes ] && mkdir ${HOME}/.zsh_includes"
       - touch ${HOME}/.aliases
     deps:
+      - zplug
       - zprezto
       - brew-zsh
 
@@ -64,6 +65,12 @@ tasks:
       condition: "[ ! -d ~/.zprezto ]"
     cmd:
       - git clone --quiet --recursive  https://github.com/sorin-ionescu/prezto.git ~/.zprezto
+
+  zplug:
+    when:
+      condition: "[ ! -d ~/.zplug ]"
+    cmd:
+      - curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
 
   git:
     links:
