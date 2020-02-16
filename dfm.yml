@@ -65,7 +65,7 @@ tasks:
       condition: "[ ! -d ~/.zplug ]"
     cmd:
       - curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
-      - [[ -s ~/.zplug/init.zsh ]] && source ~/.zplug/init.zsh && zplug install
+      - "[[ -s ~/.zplug/init.zsh ]] && source ~/.zplug/init.zsh && zplug install"
 
   zprezto:
     when:
