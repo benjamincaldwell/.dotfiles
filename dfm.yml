@@ -1,5 +1,3 @@
----
-
 repo: git@github.com:bcaldwell/dotfiles.git
 srcDir: .dotfiles
 
@@ -12,13 +10,13 @@ tasks:
       - dfm_config
       - zsh
       - go
-      - ruby
 
   linux:
     when:
       os: "linux"
     deps:
       - zsh
+
   darwin:
     when:
       os: "darwin"
@@ -41,7 +39,7 @@ tasks:
     cmd:
       - "curl -o- https://raw.githubusercontent.com/devctl/devctl/master/install.sh | bash"
     links:
-      - devctl:.devctl
+      - devctl/config:.devctl
 
   zsh:
     links:
@@ -54,23 +52,26 @@ tasks:
       - zsh/prompt/prompt_benjamin_setup:.zprezto/modules/prompt/functions/prompt_benjamin_setup
     cmd:
       - "[ ! -d ${HOME}/.zsh_includes ] && mkdir ${HOME}/.zsh_includes"
+      - touch ${HOME}/.zsh_includes/exists
       - touch ${HOME}/.aliases
     deps:
       - zplug
       - zprezto
       - brew-zsh
-
-  zprezto:
-    when:
-      condition: "[ ! -d ~/.zprezto ]"
-    cmd:
-      - git clone --quiet --recursive  https://github.com/sorin-ionescu/prezto.git ~/.zprezto
+      - zplug
 
   zplug:
     when:
       condition: "[ ! -d ~/.zplug ]"
     cmd:
       - curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
+      - [[ -s ~/.zplug/init.zsh ]] && source ~/.zplug/init.zsh && zplug install
+
+  zprezto:
+    when:
+      condition: "[ ! -d ~/.zprezto ]"
+    cmd:
+      - git clone --quiet --recursive  https://github.com/sorin-ionescu/prezto.git ~/.zprezto
 
   git:
     links:

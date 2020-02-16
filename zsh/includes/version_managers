@@ -1,0 +1,7 @@
+
+#nvm
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
+
+# gvm
+# [[ -s "/home/benjamin/.gvm/scripts/gvm" ]] && source "/home/benjamin/.gvm/scripts/gvm"
