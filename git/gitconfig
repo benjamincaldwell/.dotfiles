@@ -7,13 +7,17 @@
 	excludesfile = /Users/benjamincaldwell/.gitignore_global
 	quotepath = false
 	editor = vim
-[mergetool "Kaleidoscope"]
-	cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
-	trustexitcode = true
-[merge]
-	tool = Kaleidoscope
-[difftool "Kaleidoscope"]
-	cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
+
+# @dfm os=darwin start
+# [mergetool "Kaleidoscope"]
+	# cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
+	# trustexitcode = true
+# [merge]
+	# tool = Kaleidoscope
+# [difftool "Kaleidoscope"]
+	# cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
+# @dfm end
+
 [color]
 	diff = auto
 	status = auto
@@ -50,8 +54,6 @@
 	graph = log --graph --oneline --all --decorate
 	graph-detailed = log --graph --oneline --all --decorate --name-only
 	graph-full = log --graph --oneline --all --decorate --name-only
-[diff]
-	tool = Kaleidoscope
 [push]
 	default = current
 	gpgsign = if-asked
@@ -60,11 +62,13 @@
 	smudge = git lfs smudge %f
 	required = true
 
-[commit]
-	gpgsign = true
-
-[gpg]
-	program = /usr/local/bin/gpg
+# @dfm host=darwin start
+# [commit]
+	# gpgsign = true
+# 
+# [gpg]
+	# program = /usr/local/bin/gpg
+# @dfm end
 
 [url "git@git.soma.salesforce.com:"]
 	insteadOf = https://git.soma.salesforce.com/
