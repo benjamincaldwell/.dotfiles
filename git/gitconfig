@@ -1,7 +1,8 @@
 [user]
 	name = Benjamin Caldwell
 	email = caldwellbenjamin8@gmail.com
-	signingkey = E18B104EF6EC5DA9
+# @dfm host=Benjamins-MacBook-Pro.local
+  signingkey = E18B104EF6EC5DA9
 
 [core]
 	excludesfile = /Users/benjamincaldwell/.gitignore_global
@@ -9,13 +10,13 @@
 	editor = vim
 
 # @dfm os=darwin start
-# [mergetool "Kaleidoscope"]
-	# cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
-	# trustexitcode = true
-# [merge]
-	# tool = Kaleidoscope
-# [difftool "Kaleidoscope"]
-	# cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
+[mergetool "Kaleidoscope"]
+	cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
+	trustexitcode = true
+[merge]
+	tool = Kaleidoscope
+[difftool "Kaleidoscope"]
+	cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
 # @dfm end
 
 [color]
@@ -62,12 +63,12 @@
 	smudge = git lfs smudge %f
 	required = true
 
-# @dfm host=darwin start
-# [commit]
-	# gpgsign = true
-# 
-# [gpg]
-	# program = /usr/local/bin/gpg
+# @dfm os=darwin start
+[commit]
+	gpgsign = true
+
+[gpg]
+	program = /usr/local/bin/gpg
 # @dfm end
 
 [url "git@git.soma.salesforce.com:"]
