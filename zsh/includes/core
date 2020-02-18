@@ -7,9 +7,6 @@ alias bx="bundle exec"
 #docker compose
 alias dc="docker-compose"
 
-#up command to cd out of directories
-up() { [ $(( $1 + 0 )) -gt 0 ] && cd $(eval "printf '../'%.0s {1..$1}"); }
-
 #cd and ls
 function cs () {cd ${1-..} && ls}
 
@@ -25,6 +22,9 @@ alias yolo='git add .; git commit --amend --no-edit'
 #encryption
 function encrypt(){ openssl aes-256-cbc -a -salt -in "${1}" -out "${2}"; }
 function decrypt(){ openssl aes-256-cbc -d -a -in "${1}" -out "${2}"; }
+
+#pr checkout
+checkoutpr() {git fetch upstream pull/$1/head:$2; git checkout $2}
 
 function dotenv() {
   set -a;
