@@ -30,19 +30,35 @@ fi
 # added by devctl command
 [ -f /opt/devctl/devctl.sh ] && source /opt/devctl/devctl.sh
 
-LC_ALL=en_CA.UTF-8
-LANG=en_CA.UTF-8
-
+# LC_ALL=en_CA.UTF-8
+# LANG=en_CA.UTF-8
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && export PATH="$PATH:$HOME/.rvm/bin"
+
+[ -f /Users/benjamincaldwell/.devctl/devctl.sh ] && \. /Users/benjamincaldwell/.devctl/devctl.sh # This loads devctl shell super powers
+[ -f /opt/devctl/devctl.sh ] && \. /opt/devctl/devctl.sh
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/benjamincaldwell/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/benjamincaldwell/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/benjamincaldwell/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/benjamincaldwell/google-cloud-sdk/completion.zsh.inc'; fi
+
+# test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 zplug zsh-users/zsh-autosuggestions
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#424242"
 bindkey '[D' autosuggest-accept
-zplug load 
 
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/b.caldwell/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/b.caldwell/Downloads/google-cloud-sdk/path.zsh.inc'; fi
+# let zplug manage itself
+zplug 'zplug/zplug', hook-build:'zplug --self-manage'
 
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/b.caldwell/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/b.caldwell/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
+# zplug check returns true if all packages are installed
+# Therefore, when it returns false, run zplug install
+if ! zplug check; then
+    zplug install
+fi
+
+# source plugins and add commands to the PATH
+zplug load

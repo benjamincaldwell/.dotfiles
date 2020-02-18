@@ -1,12 +1,17 @@
 [user]
 	name = Benjamin Caldwell
-	email = b.caldwell@salesforce.com
-#	signingkey = 3B61BE40
+	email = caldwellbenjamin8@gmail.com
+# @dfm host=Benjamins-MacBook-Pro.local
+  # signingkey = E18B104EF6EC5DA9
+# @dfm host=bcaldwell-ltm.internal.salesforce.com
 	signingkey = F9C56A8DE918FFB4C09516E018F3BF54213D47F5
+
 [core]
 	excludesfile = /Users/benjamincaldwell/.gitignore_global
 	quotepath = false
 	editor = vim
+
+# @dfm os=darwin start
 [mergetool "Kaleidoscope"]
 	cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
 	trustexitcode = true
@@ -14,6 +19,8 @@
 	tool = Kaleidoscope
 [difftool "Kaleidoscope"]
 	cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
+# @dfm end
+
 [color]
 	diff = auto
 	status = auto
@@ -27,7 +34,7 @@
 	cam = commit -am
 
 	#forget tracked files
-	forget = rm -r --cached . 
+	forget = rm -r --cached .
 
     yolo = commit --amend --no-edit
 
@@ -43,15 +50,13 @@
 	cached = diff --cached
 	stat = diff --stat
 	fliptable = "!echo '(╯°□°）╯︵ ┻━┻'; git reset --hard HEAD"
-	
+
 	# dealing with others
 
 	# miscellaneous
 	graph = log --graph --oneline --all --decorate
 	graph-detailed = log --graph --oneline --all --decorate --name-only
 	graph-full = log --graph --oneline --all --decorate --name-only
-[diff]
-	tool = Kaleidoscope
 [push]
 	default = current
 	gpgsign = if-asked
@@ -59,13 +64,14 @@
 	clean = git lfs clean %f
 	smudge = git lfs smudge %f
 	required = true
-#[github]
-#	token = b967aeaf05841750a6689a58ac91c59f19b629cd
+
+# @dfm os=darwin start
 [commit]
 	gpgsign = true
-#[gpg]
-#	program = /usr/local/bin/gpg
+
 [gpg]
 	program = /usr/local/bin/gpg
+# @dfm end
+
 [url "git@git.soma.salesforce.com:"]
 	insteadOf = https://git.soma.salesforce.com/
