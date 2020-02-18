@@ -36,10 +36,10 @@ tasks:
       - dfm.yml:dfm.yml
 
   devctl:
-    cmd:
-      - "curl -o- https://raw.githubusercontent.com/devctl/devctl/master/install.sh | bash"
+    # cmd:
+    #   - "curl -o- https://raw.githubusercontent.com/devctl/devctl/master/install.sh | bash"
     links:
-      - devctl/config:.devctl
+      - devctl/devctl:.devctl
 
   zsh:
     links:
