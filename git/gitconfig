@@ -1,10 +1,13 @@
 [user]
 	name = Benjamin Caldwell
-	email = caldwellbenjamin8@gmail.com
-# @dfm host=Benjamins-MacBook-Pro.local
+# @dfm host=Benjamins-MacBook-Pro.local start
   # signingkey = E18B104EF6EC5DA9
-# @dfm host=bcaldwell-ltm.internal.salesforce.com
+	# email = caldwellbenjamin8@gmail.com
+# @dfm end
+# @dfm host=bcaldwell-ltm.internal.salesforce.com start
 	signingkey = F9C56A8DE918FFB4C09516E018F3BF54213D47F5
+	email = b.caldwell@salesforce.com
+# @dfm end
 
 [core]
 	excludesfile = /Users/benjamincaldwell/.gitignore_global

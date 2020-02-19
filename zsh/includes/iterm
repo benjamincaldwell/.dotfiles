@@ -1,0 +1,11 @@
+# @dfm host=darwin start
+#if [[ -f "${HOME}/.iterm2_shell_integration.zsh"]]; then
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+	
+	# setup kubecontext variable
+KUBECONTEXT=$(CTX=$(kubectl config current-context) 2> /dev/null;if [ $? -eq 0 ]; then echo $CTX;fi)
+test -e "${HOME}/.iterm2_shell_integration.zsh" && iterm2_set_user_var kubeContext $KUBECONTEXT
+#fi
+
+# @dfm stop
+
