@@ -1,64 +1,59 @@
-#
-# Executes commands at the start of an interactive session.
-#
-# Authors:
-#   Sorin Ionescu <sorin.ionescu@gmail.com>
+# commands to time load time
+# module_path+=( "/Users/b.caldwell/.zinit/bin/zmodules/Src" )
+# zmodload zdharma/zplugin
 #
 
 # Source Prezto.
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
-  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
-fi
-
-[[ -s ~/.zplug/init.zsh ]] && source ~/.zplug/init.zsh
-
-#load shared and private functions
-for function in ~/.dotfiles/zsh/includes/*; do
-  source $function
-done
-
-if [[ -d ~/.zsh_includes ]]; then
-  for function in ~/.zsh_includes/*; do
-    source $function
-  done
+ source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
 #load shared and 'private' aliases
 [[ -f ~/.dotfiles/zsh/aliases ]] && source ~/.dotfiles/zsh/aliases
 [[ -f ~/.aliases ]] && source ~/.aliases
 
-# added by devctl command
-[ -f /opt/devctl/devctl.sh ] && source /opt/devctl/devctl.sh
-
-# LC_ALL=en_CA.UTF-8
-# LANG=en_CA.UTF-8
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && export PATH="$PATH:$HOME/.rvm/bin"
-
-[ -f /Users/benjamincaldwell/.devctl/devctl.sh ] && \. /Users/benjamincaldwell/.devctl/devctl.sh # This loads devctl shell super powers
 [ -f /opt/devctl/devctl.sh ] && \. /opt/devctl/devctl.sh
 
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/benjamincaldwell/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/benjamincaldwell/google-cloud-sdk/path.zsh.inc'; fi
+# with zinit wait these does not work well
+# @dfm host=darwin start
+if [[ -f $HOME/.iterm2_shell_integration.zsh ]]; then
+  source "${HOME}/.iterm2_shell_integration.zsh"
 
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/benjamincaldwell/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/benjamincaldwell/google-cloud-sdk/completion.zsh.inc'; fi
-
-# test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-
-zplug zsh-users/zsh-autosuggestions
-export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#424242"
-bindkey '[D' autosuggest-accept
-
-# let zplug manage itself
-zplug 'zplug/zplug', hook-build:'zplug --self-manage'
-
-# zplug check returns true if all packages are installed
-# Therefore, when it returns false, run zplug install
-if ! zplug check; then
-    zplug install
+  iterm2_print_user_vars () {
+  	# setup kubecontext variable
+  	KUBECONTEXT=$(CTX=$(kubectl config current-context) 2> /dev/null;if [ $? -eq 0 ]; then echo $CTX;fi)
+  	iterm2_set_user_var kubeContext $KUBECONTEXT
+  }
 fi
 
-# source plugins and add commands to the PATH
-zplug load
+# @dfm stop
+
+### Added by Zinit's installer
+if [[ ! -f $HOME/.zinit/bin/zinit.zsh ]]; then
+    print -P "%F{33}▓▒░ %F{220}Installing DHARMA Initiative Plugin Manager (zdharma/zinit)…%f"
+    command mkdir -p "$HOME/.zinit" && command chmod g-rwX "$HOME/.zinit"
+    command git clone https://github.com/zdharma/zinit "$HOME/.zinit/bin" && \
+        print -P "%F{33}▓▒░ %F{34}Installation successful.%f" || \
+        print -P "%F{160}▓▒░ The clone has failed.%f"
+fi
+source "$HOME/.zinit/bin/zinit.zsh"
+autoload -Uz _zinit
+(( ${+_comps} )) && _comps[zinit]=_zinit
+### End of Zinit installer's chunk
+
+# setopt promptsubst
+# zinit snippet $HOME/.dotfiles/zsh/prompt/prompt_benjamin_setup
+
+zinit ice wait lucid multisrc="*.zsh" pick"/dev/null"
+zinit light $HOME/.dotfiles/zsh/includes
+zinit ice wait lucid multisrc="*.zsh" pick"/dev/null"
+zinit light $HOME/.zsh_includes
+
+zinit ice wait lucid atload'_zsh_autosuggest_start'
+zinit light zsh-users/zsh-autosuggestions
+
+zinit ice wait atinit"zpcompinit" lucid
+zinit light zdharma/fast-syntax-highlighting
+
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#424242"
+bindkey '[D' autosuggest-accept
