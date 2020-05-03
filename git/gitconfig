@@ -1,12 +1,12 @@
 [user]
 	name = Benjamin Caldwell
 # @dfm host=Benjamins-MacBook-Pro.local start
-  # signingkey = E18B104EF6EC5DA9
-	# email = caldwellbenjamin8@gmail.com
+	signingkey = E18B104EF6EC5DA9
+	email = caldwellbenjamin8@gmail.com
 # @dfm end
 # @dfm host=bcaldwell-ltm.internal.salesforce.com start
-	signingkey = F9C56A8DE918FFB4C09516E018F3BF54213D47F5
-	email = b.caldwell@salesforce.com
+	# signingkey = F9C56A8DE918FFB4C09516E018F3BF54213D47F5
+	# email = b.caldwell@salesforce.com
 # @dfm end
 
 [core]

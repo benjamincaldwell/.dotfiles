@@ -1,5 +1,5 @@
 repo: git@github.com:bcaldwell/dotfiles.git
-srcDir: .dotfiles
+srcDir: $HOME/.dotfiles
 
 alias:
   clone: git clone
@@ -91,7 +91,7 @@ tasks:
     when:
       notInstalled: brew
     cmd:
-      - "/usr/bin/ruby -e \"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)\""
+      - '/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"'
 
   brew-zsh:
     when:
@@ -105,7 +105,8 @@ tasks:
     when:
       os: "darwin"
     cmd:
-      - brew install git
+      # install even when git is installed because we want to replace the system git
+      - brew list git &>/dev/null || brew install git
     deps:
       - brew
 
@@ -119,17 +120,18 @@ tasks:
     deps:
       - brew
 
-  vscode-extensions:
-    cmd:
-      - sh
-    # os: "darwin"
-    vscode:
-      when:
-        notInstalled: brew
-      cmd:
-        - brew cask install visual-studio-code
-      deps:
-        - brew
+  # vscode-extensions:
+  #   cmd:
+  #     - sh
+  #   # os: "darwin"
+
+  # vscode:
+  #   when:
+  #     notInstalled: brew
+  #   cmd:
+  #     - brew cask install visual-studio-code
+  #   deps:
+  #     - brew
 
   atom:
     when:

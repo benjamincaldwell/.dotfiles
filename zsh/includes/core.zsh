@@ -32,3 +32,6 @@ function dotenv() {
   [ -f .env.ejson ] && eval $(ejson2env .env.ejson 2>/dev/null  || sudo ejson2env .env.ejson);
   set +a;
 }
+
+# dfm
+type dfm > /dev/null 2> /dev/null && eval "$(dfm shell-init)"
