@@ -14,7 +14,7 @@ fi
 
 [ -f /opt/devctl/devctl.sh ] && \. /opt/devctl/devctl.sh
 
-# with zinit wait these does not work well
+# with zinit wait these do not work well
 # @dfm os=darwin start
 if [[ -f $HOME/.iterm2_shell_integration.zsh ]]; then
   source "${HOME}/.iterm2_shell_integration.zsh"

@@ -51,20 +51,17 @@ tasks:
       - zsh/runcoms/zshrc:.zshrc
       - zsh/prompt/prompt_benjamin_setup:.zprezto/modules/prompt/functions/prompt_benjamin_setup
     cmd:
-      - "[ ! -d ${HOME}/.zsh_includes ] && mkdir ${HOME}/.zsh_includes"
-      - touch ${HOME}/.zsh_includes/exists
+      - mkdir -p ${HOME}/.zsh_includes
+      - touch ${HOME}/.zsh_includes/exists.zsh
       - touch ${HOME}/.aliases
     deps:
-      - zplug
+      # - zplug
       - zprezto
       - brew-zsh
-      - zplug
 
   zplug:
-    when:
-      condition: "[ ! -d ~/.zplug ]"
     cmd:
-      - curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
+      - "[[ -s ~/.zplug/init.zsh ]] || (curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh)"
       - "[[ -s ~/.zplug/init.zsh ]] && source ~/.zplug/init.zsh && zplug install"
 
   zprezto:
@@ -97,7 +94,8 @@ tasks:
     when:
       os: "darwin"
     cmd:
-      - brew install zsh zsh-completions
+      - brew list zsh &>/dev/null || brew install zsh
+      - brew list zsh-completions &>/dev/null || brew install zsh-completions
     deps:
       - brew
 
@@ -196,3 +194,10 @@ tasks:
       - gem install rubocop
     links:
       - linters/.rubocop.yml:.rubocop.yml
+
+  iterm2:
+    when:
+      os: "darwin"
+    cmd:
+      - defaults write com.googlecode.iterm2.plist PrefsCustomFolder -string "$HOME/.dotfiles/macos/iterm2"
+      - defaults write com.googlecode.iterm2.plist LoadPrefsFromCustomFolder -bool true
